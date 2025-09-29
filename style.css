@@ -105,6 +105,12 @@ h1{
     justify-content: center;
 }
 
+h4{
+    font-size: 1rem;
+
+}
+
+
 .card{
     background-color: rgb(1, 142, 60);
     width: 200px;
@@ -112,4 +118,5 @@ h1{
     padding: 20px;
     border-radius: 10px;
     font-size: 1rem;
+    min-height: 2rem;
 }

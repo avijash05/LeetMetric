@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
         try{
             searchButton.textContent="Searching...";
             searchButton.disabled=true;
+            statsContainer.classList.add('hidden');
             // const response=await fetch(url);
             const proxyUrl= 'https://cors-anywhere.herokuapp.com/';
             const targetUrl = 'https://leetcode.com/graphql/';
@@ -95,6 +96,12 @@ document.addEventListener('DOMContentLoaded', function(){
         label.textContent=`${solved}/${total} `;
     }
     function displayUserData(parsedData){
+        if (!parsedData.data.matchedUser) {
+        statsContainer.innerHTML = `<p>User not found</p>`;
+        return;
+        }
+        cardstatsContainer.innerHTML = "";
+
        const totalQues= parsedData.data.allQuestionsCount[0].count;
         const totalEasyQues= parsedData.data.allQuestionsCount[1].count;
         const totalMediumQues= parsedData.data.allQuestionsCount[2].count;
@@ -117,13 +124,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
         console.log("card ka data : ", cardsData);
         cardstatsContainer.innerHTML= cardsData.map(
-            data =>{
-                return `
+            data =>`
                 <div class="card">
                 <h4>${data.label}</h4>
                 <p>${data.value}</p>
                 </div>`
-            }
+            
         ).join('');
 
     }
