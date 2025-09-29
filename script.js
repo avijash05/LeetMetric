@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const easyLabel=document.getElementById('easy-label');
     const mediumLabel=document.getElementById('medium-label');
     const hardLabel=document.getElementById('hard-label');
-    const cardstatsContainer=document.getElementById('stats-container');
+    const cardstatsContainer=document.querySelector(".stats-card");
 
     //retrun true or false based on a regex
     function validateUsername(username){
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function(){
             displayUserData(parsedData);
         }
         catch(error){
-            statsContainer.innerHTML=`<p>No data found</p>`;
+            statsContainer.innerHTML=`<p>${error.message}</p>`;
         }
         finally{
             searchButton.textContent="Search";
@@ -107,6 +107,25 @@ document.addEventListener('DOMContentLoaded', function(){
         updateProgress(solvedTotalEasyQues,totalEasyQues,easyLabel,easyProgressCircle);
         updateProgress(solvedTotalMediumQues,totalMediumQues,mediumLabel,mediumProgressCircle);
         updateProgress(solvedTotalHardQues,totalHardQues,hardLabel,hardProgressCircle);
+        
+        const cardsData=[
+            {label: "Overall Submissions", value: parsedData.data.matchedUser.submitStats.totalSubmissionNum[0].submissions},
+            {label: "Overall Easy Submissions", value: parsedData.data.matchedUser.submitStats.totalSubmissionNum[1].submissions},
+            {label: "Overall Medium Submissions", value: parsedData.data.matchedUser.submitStats.totalSubmissionNum[2].submissions},
+            {label: "Overall Hard Submissions", value: parsedData.data.matchedUser.submitStats.totalSubmissionNum[3].submissions},
+        ];
+
+        console.log("card ka data : ", cardsData);
+        cardstatsContainer.innerHTML= cardsData.map(
+            data =>{
+                return `
+                <div class="card">
+                <h4>${data.label}</h4>
+                <p>${data.value}</p>
+                </div>`
+            }
+        ).join('');
+
     }
     searchButton.addEventListener('click', function(){
         const username = usernameInput.value;
