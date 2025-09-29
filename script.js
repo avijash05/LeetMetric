@@ -9,6 +9,26 @@ document.addEventListener('DOMContentLoaded', function(){
     const mediumLabel=document.getElementById('medium-label');
     const hardLabel=document.getElementById('hard-label');
     const cardstatsContainer=document.querySelector(".stats-card");
+    // Theme toggle with localStorage persistence
+const themeToggle = document.getElementById('theme-toggle');
+
+// Load saved theme on page load
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+}
+
+// Toggle and save preference
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+
+    if (document.body.classList.contains('light-theme')) {
+        localStorage.setItem('theme', 'light');
+    } else {
+        localStorage.setItem('theme', 'dark');
+    }
+});
+
+
 
     //retrun true or false based on a regex
     function validateUsername(username){

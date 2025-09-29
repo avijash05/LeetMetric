@@ -1,122 +1,217 @@
-*{
+/* Theme Variables (default: dark) */
+:root {
+    --bg-gradient: linear-gradient(135deg, #1e3c3b, #0a1f1c);
+    --container-bg: rgba(0, 79, 46, 0.95);
+    --text-color: #f1f1f1;
+    --input-bg: #f8f8f8;
+    --input-text: #333;
+    --accent: #1dbf73;
+    --accent-hover: #21e087;
+    --card-bg: rgba(29, 191, 115, 0.12);
+    --card-hover: rgba(29, 191, 115, 0.18);
+}
+
+/* Light Theme Override */
+body.light-theme {
+    --bg-gradient: linear-gradient(135deg, #f9f9f9, #e3e3e3);
+    --container-bg: #ffffff;
+    --text-color: #222;
+    --input-bg: #fff;
+    --input-text: #222;
+    --accent: #0077ff;
+    --accent-hover: #3399ff;
+    --card-bg: rgba(0, 119, 255, 0.08);
+    --card-hover: rgba(0, 119, 255, 0.15);
+}
+
+/* Reset & Base */
+* {
     margin: 0;
     padding: 0;
-    box-sizing:border-box;
-    font-family: 'times new roman', Times, serif;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
-body{
-    background-color: rgb(26, 37, 39);
-    color:white;
-    height:100vh;
-    display:flex;
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
+    transition: background 0.3s ease, color 0.3s ease;
 }
-.container{
-    display:flex;
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    background: var(--accent);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+.theme-toggle:hover {
+    background: var(--accent-hover);
+}
+
+/* Container */
+.container {
+    display: flex;
     flex-direction: column;
-    gap:1.5rem;
-    background-color: rgb(0, 79, 46);
+    gap: 1.8rem;
+    background: var(--container-bg);
     border-radius: 20px;
-    padding:20px;
-    max-width :600px;
-    width: 50%; 
+    padding: 2rem;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.container:hover {
+    transform: translateY(-3px);
 }
 
-h1{
-    font-size:2rem;
+h1 {
+    font-size: 2.2rem;
     text-align: center;
-}
-.user-container{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    justify-content: start;
-
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: 1px;
 }
 
-.user-input-container{
-    display:flex;
-    gap:10px;
+/* Input */
+.user-input-container {
+    display: flex;
+    gap: 10px;
     justify-content: space-between;
 }
-#user-input{
+
+#user-input {
     width: 80%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border:none;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1);
+    outline: none;
+    background: var(--input-bg);
+    color: var(--input-text);
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
 }
-#search-btn{
-    padding:0.4rem;
-    border-radius: 5px;
-    border:none;
+#user-input:focus {
+    box-shadow: 0 0 0 2px var(--accent);
 }
-.circle{
+
+/* Button */
+#search-btn {
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#search-btn:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+}
+#search-btn:disabled {
+    background: #888;
+    cursor: not-allowed;
+}
+
+/* Progress Circles */
+.circle {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 4px solid rgb(1, 142, 60);
+    border: 5px solid rgba(255, 255, 255, 0.15);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    color:white;
+    font-size: 0.95rem;
     font-weight: 700;
     flex-direction: column;
-    background: conic-gradient(#299f5d var(--progress-degree, 0%),   
- #283a2e 0%);
+    background: conic-gradient(var(--accent) var(--progress-degree, 0deg), #283a2e 0deg);
+    transition: all 0.4s ease;
 }
-.easy-progress {
-  color : white;  
-  border-color: hsl(120, 100%, 25%);
-  
-}
-
-.medium-progress {
-    color: white;
-  border-color: orange;
-  
-}
-
-.hard-progress {
-    color: white;
-  border-color: red;
-  
-}
-.circle span{
+.circle span {
     position: relative;
     z-index: 2;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
 }
-.progress{
-    display:flex;
+
+.easy-progress { border-color: #2ecc71; }
+.medium-progress { border-color: #f39c12; }
+.hard-progress { border-color: #e74c3c; }
+
+.progress {
+    display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    flex-wrap:wrap;
-    gap:10px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.stats-card{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+/* Stats Cards */
+.stats-card {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
 }
-
-h4{
-    font-size: 1rem;
-
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 200px;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    min-height: 2.5rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+.card:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+}
+h4 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    font-weight: 600;
 }
 
-
-.card{
-    background-color: rgb(1, 142, 60);
-    width: 200px;
-    max-width: 290px;
-    padding: 20px;
-    border-radius: 10px;
-    font-size: 1rem;
-    min-height: 2rem;
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 1.2rem;
+        gap: 1.2rem;
+    }
+    .circle {
+        width: 95px;
+        height: 95px;
+        font-size: 0.8rem;
+    }
+    #user-input {
+        width: 70%;
+    }
+    .card {
+        width: 100%;
+    }
 }
