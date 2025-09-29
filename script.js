@@ -56,7 +56,7 @@ themeToggle.addEventListener('click', () => {
             searchButton.disabled=true;
             statsContainer.classList.add('hidden');
             // const response=await fetch(url);
-            const proxyUrl= 'https://cors-anywhere.herokuapp.com/';
+            const proxyUrl= 'https://cors-anywhere.herokuapp.com/';     //https://cors-anywhere.herokuapp.com/corsdemo
             const targetUrl = 'https://leetcode.com/graphql/';
             //concatenated url: https://cors-anywhere.herokuapp.com/https://leetcode.com/graphql/
             const myHeaders =new Headers();
