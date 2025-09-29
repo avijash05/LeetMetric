@@ -61,7 +61,7 @@ h1{
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    columns:white;
+    color:white;
     font-weight: 700;
     background: conic-gradient(#299f5d var(--progress-degree, 0%),   
  #283a2e 0%);

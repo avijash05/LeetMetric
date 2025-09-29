@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', function(){
         label.textContent=`${solved}/${total} `;
     }
     function displayUserData(parsedData){
-       const totalQues= parsedData.data.allQuetionsCount[0].count;
-        const totalEasyQues= parsedData.data.allQuetionsCount[1].count;
-        const totalMediumQues= parsedData.data.allQuetionsCount[2].count;
-        const totalHardQues= parsedData.data.allQuetionsCount[3].count;
+       const totalQues= parsedData.data.allQuestionsCount[0].count;
+        const totalEasyQues= parsedData.data.allQuestionsCount[1].count;
+        const totalMediumQues= parsedData.data.allQuestionsCount[2].count;
+        const totalHardQues= parsedData.data.allQuestionsCount[3].count;
 
         const solvedTotalQues=parsedData.data.matchedUser.submitStats.acSubmissionNum[0].count;
         const solvedTotalEasyQues=parsedData.data.matchedUser.submitStats.acSubmissionNum[1].count;
